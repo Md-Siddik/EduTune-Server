@@ -43,6 +43,14 @@ async function run() {
       res.send(result);
     })
 
+    app.get('/course/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = {_id:new ObjectId(id)};
+      const result = await courseCollection.findOne(query);
+      // const result = await cursor.toArray();
+      res.send(result);
+    })
+
     app.get('/user', async (req, res) => {
       const cursor = userCollection.find();
       const result = await cursor.toArray();
